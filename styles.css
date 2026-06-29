@@ -892,7 +892,7 @@ section {
 }
 
 .testi {
-  background: linear-gradient(180deg, var(--night), var(--moss))
+  background: linear-gradient(180deg, var(--night), var(--moss));
 }
 
 .t-track {
@@ -902,45 +902,55 @@ section {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
-  scrollbar-width: none
+  scrollbar-width: none;
 }
 
 .t-track::-webkit-scrollbar {
-  display: none
+  display: none;
 }
 
 .t-card {
   scroll-snap-align: start;
-  flex: 0 0 min(420px, 82vw);
+  flex: 0 0 380px;
+  min-width: 380px;
   background: var(--bark);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 2rem
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .t-card .q {
-  font-family: "Fraunces";
+  font-family: "Fraunces", serif;
   font-style: italic;
   font-size: 1.25rem;
   line-height: 1.5;
-  margin-bottom: 1.4rem
+  margin-bottom: 1.4rem;
 }
 
 .t-card .who {
-  font-weight: 700
+  font-weight: 700;
 }
 
 .t-card .trip {
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: var(--ember-soft);
   text-transform: uppercase;
-  letter-spacing: .14em
+  letter-spacing: 0.14em;
 }
 
 .t-card .stars {
   color: var(--ember);
   margin-bottom: 1rem;
-  letter-spacing: 3px
+  letter-spacing: 3px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .t-card {
+    flex: 0 0 85vw;
+    min-width: 85vw;
+  }
 }
 
 .love {
