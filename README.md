@@ -1,8 +1,4 @@
-# Camp Bughaw — Landing Page
 
-A static landing page. No build step, no installs — just HTML, CSS, and JavaScript.
-
-## Files
 
 ```
 bughaw-site/
