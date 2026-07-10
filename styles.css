@@ -306,49 +306,6 @@ header.scrolled {
   transform: translateY(-2px)
 }
 
-.scrollcue {
-  position: absolute;
-  left: 50%;
-  bottom: 26px;
-  transform: translateX(-50%);
-  z-index: 3;
-  font-size: .7rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--bone-dim);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px
-}
-
-.scrollcue .bar {
-  width: 1px;
-  height: 34px;
-  background: linear-gradient(var(--ember), transparent);
-  animation: cue 1.8s infinite
-}
-
-@keyframes cue {
-  0% {
-    transform: scaleY(.2);
-    transform-origin: top
-  }
-
-  50% {
-    transform: scaleY(1);
-    transform-origin: top
-  }
-
-  50.1% {
-    transform-origin: bottom
-  }
-
-  100% {
-    transform: scaleY(.2);
-    transform-origin: bottom
-  }
-}
 
 section {
   position: relative
@@ -852,8 +809,7 @@ section {
 }
 
 .v-slide .v-poster {
-  background-size: cover;
-  background-position: center;
+  background: transparent;
   cursor: pointer;
   transition: filter .4s
 }
@@ -1009,6 +965,7 @@ section {
 
 .ev h4 {
   font-family: "Anton";
+   letter-spacing: .10em;
   text-transform: uppercase;
   font-size: 1.3rem;
   margin-bottom: .5rem

@@ -34,24 +34,37 @@ if (vcViewport) {
 
   let index = 0;
 
-  // Build each slide: poster first (cheap), real <video> only once played.
+  // Build each slide: the <video> itself is the thumbnail, frozen ~1s in.
+  // Clicking the play button restarts it from 0 with sound + controls.
   slides.forEach((slide) => {
+    const vid = document.createElement('video');
+    vid.src = slide.dataset.src;
+    vid.muted = true;            // required so we can seek/preview without user gesture
+    vid.playsInline = true;
+    vid.preload = 'metadata';    // load just enough to grab a frame
+    vid.setAttribute('aria-label', slide.dataset.title || 'Camp Bughaw video');
+    slide.appendChild(vid);
+
+    // Seek ~1s in for the thumbnail (avoids a black opening frame).
+    const seekToPreview = () => {
+      const t = Math.min(1, (vid.duration || 1) - 0.05);
+      try { vid.currentTime = t > 0 ? t : 0.01; } catch (e) {}
+    };
+    vid.addEventListener('loadedmetadata', seekToPreview, { once: true });
+    // Fallback for browsers that need more data before seeking works.
+    vid.addEventListener('canplay', () => {
+      if (vid.currentTime === 0) seekToPreview();
+    }, { once: true });
+
     const poster = document.createElement('div');
     poster.className = 'v-poster';
-    poster.style.backgroundImage = `url("${slide.dataset.poster}")`;
     slide.appendChild(poster);
 
     poster.addEventListener('click', () => {
-      let vid = slide.querySelector('video');
-      if (!vid) {
-        vid = document.createElement('video');
-        vid.src = slide.dataset.src;
-        vid.controls = true;
-        vid.playsInline = true;
-        vid.preload = 'metadata';
-        slide.insertBefore(vid, poster);
-      }
       poster.classList.add('gone');
+      vid.muted = false;
+      vid.controls = true;
+      vid.currentTime = 0;
       vid.play().catch(() => {});
     });
   });
@@ -68,7 +81,13 @@ if (vcViewport) {
   function pauseAll() {
     slides.forEach(s => {
       const v = s.querySelector('video');
-      if (v) v.pause();
+      if (v) {
+        v.pause();
+        v.muted = true;
+        v.controls = false;
+        const t = Math.min(1, (v.duration || 1) - 0.05);
+        try { v.currentTime = t > 0 ? t : 0.01; } catch (e) {}
+      }
       const p = s.querySelector('.v-poster');
       if (p) p.classList.remove('gone');
     });
