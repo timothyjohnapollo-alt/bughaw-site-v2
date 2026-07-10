@@ -15,7 +15,10 @@
 <body>
   <header id="hdr">
     <div class="wrap nav">
-      <a href="#top" class="brand">CAMP <b>BUGHAW</b><small>Daraitan · Tanay</small></a>
+      <a href="#top" class="brand" aria-label="Camp Bughaw — home">
+        <img class="brand-logo" src="images/logo2.png" alt="Camp Bughaw logo">
+        <span class="brand-text">ughaw</span>
+      </a>
       <nav class="navlinks">
         <a href="#story">Story</a>
         <a href="#experiences">Experiences</a>
@@ -147,7 +150,7 @@
       </div>
     </div>
   </section>
-<section class="prop pad" id="property">
+  <section class="prop pad" id="property">
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow">Explore the grounds</p>
@@ -239,32 +242,63 @@
       </div>
     </div>
   </section>
-  <section class="dine pad" id="dining">
+  <section class="video pad" id="video">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="eyebrow">At the table</p>
-        <h2 class="display">Dining, <em>family style</em></h2>
+        <p class="eyebrow">Watch &amp; feel it</p>
+        <h2 class="display">See Bughaw <em>in motion</em></h2>
+        <p class="lead">A little taste of camp life — the river, the fire, the quiet. Swipe through, and best experienced with the sound on.</p>
       </div>
-      <div class="dine-grid reveal">
-        <div class="dine-img"><img src="images/longtable.jpg" alt="Long wooden dining table set under a thatched hut"></div>
-        <div class="dine-copy">
-          <div class="dish">
-            <h4>Boodle Fight Feast</h4>
-            <p>Grilled liempo, river-fresh tilapia, and rice laid out banana-leaf style — eaten with your hands, shoulder to shoulder.</p>
-          </div>
-          <div class="dish">
-            <h4>Campfire Grill</h4>
-            <p>Skewers and corn over the coals while the lanterns come on. Bring the marshmallows.</p>
-          </div>
-          <div class="dish">
-            <h4>Daraitan Kapeng Barako</h4>
-            <p>Strong local coffee brewed at sunrise, best taken slow by the water.</p>
-          </div>
-          <div class="dish">
-            <h4>Group Long-Table</h4>
-            <p>Tell us your numbers and we'll set the long table — meals built for sharing with the whole barkada.</p>
+
+      <!-- ==================================================================
+           HOW TO ADD OR CHANGE VIDEOS
+
+           Each video is ONE <div class="v-slide"> block below.
+           Copy a block, paste it, and edit these 3 things:
+             - data-src    = path to the video file (videos/yourfile.mp4)
+             - data-title  = the label shown under the player
+             - data-poster = the poster/thumbnail picture
+           Order top-to-bottom = order in the carousel.
+           Delete a block to remove that video. Nothing else to touch.
+      =================================================================== -->
+
+      <div class="video-carousel reveal">
+        <div class="vc-viewport" id="vcViewport">
+          <div class="vc-track" id="vcTrack">
+
+            <!-- VIDEO 1 -->
+            <div class="v-slide"
+              data-src="videos/foresttest.mp4"
+              data-title="Life at Camp Bughaw"
+              data-poster="images/hero-image.jpg"></div>
+
+            <!-- VIDEO 2 -->
+            <div class="v-slide"
+              data-src="videos/rivertest.mp4"
+              data-title="Morning by the River"
+              data-poster="images/experiences/river.jpg"></div>
+
+            <!-- VIDEO 3 -->
+            <div class="v-slide"
+              data-src="videos/bonfire.mp4"
+              data-title="Bonfire Nights"
+              data-poster="images/experiences/camp-fire-night.jpg"></div>
+
+              
+            <!-- VIDEO 4 -->
+            <div class="v-slide"
+              data-src="videos/trails.mp4"
+              data-title="Nature Trails &amp; Hikes"
+              data-poster="images/experiences/trails.jpg"></div>
+
           </div>
         </div>
+
+        <button class="vc-arrow vc-prev" id="vcPrev" aria-label="Previous video">‹</button>
+        <button class="vc-arrow vc-next" id="vcNext" aria-label="Next video">›</button>
+
+        <div class="video-now" id="videoTitle">Life at Camp Bughaw</div>
+        <div class="vc-dots" id="vcDots"></div>
       </div>
     </div>
   </section>
@@ -441,7 +475,7 @@
     <div class="wrap">
       <div class="foot-grid">
         <div>
-          <div class="foot-brand">CAMP <b>BUGHAW</b></div>
+          <div class="foot-brand"><b>BUGHAW</b></div>
           <p>Escape the city and enjoy the simple beauty of nature. A riverside camp in Daraitan, Tanay — built by hand, made for memories.</p>
         </div>
         <div>

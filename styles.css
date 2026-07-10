@@ -105,30 +105,33 @@ header.scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 74px
+  height: 98px
 }
 
+/* --- brand / logo --- */
 .brand {
-  font-family: "Anton";
-  font-size: 1.5rem;
-  letter-spacing: .02em;
-  text-transform: uppercase;
   display: flex;
-  align-items: baseline;
-  gap: .5rem
+  align-items: center;
+  gap: .3rem;
+  height: 100%;
 }
 
-.brand small {
-  font-family: "Bricolage Grotesque";
-  font-weight: 800;
-  font-size: .6rem;
-  letter-spacing: .24em;
-  color: var(--ember);
-  transform: translateY(-2px)
+.brand-logo {
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .35));
 }
 
-.brand b {
-  color: var(--ember)
+.brand-text {
+  font-family: "Anton";
+  font-size: 2.3rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--bone);
+  transform: translateY(18px);
 }
 
 .navlinks {
@@ -140,7 +143,7 @@ header.scrolled {
 
 .navlinks a {
   position: relative;
-  color: var(--bone-dim);
+  color: #e4e4e4;
   transition: color .3s
 }
 
@@ -241,7 +244,7 @@ header.scrolled {
 }
 
 .hero h1 {
-  font-size: clamp(3.2rem, 11vw, 9.5rem);
+  font-size: clamp(2.8rem, 9.5vw, 8rem);
   max-width: 14ch
 }
 
@@ -796,58 +799,183 @@ section {
   display: none
 }
 
-.dine {
+.video {
   background: var(--moss)
 }
 
-.dine-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  margin-top: 2rem;
+.video-carousel {
+  max-width: 860px;
+  margin: 3rem auto 0;
+  position: relative
+}
+
+.vc-viewport {
+  overflow: hidden;
   border-radius: 12px;
-  overflow: hidden
+  cursor: grab;
+  touch-action: pan-y
 }
 
-.dine-img {
+.vc-viewport.dragging {
+  cursor: grabbing
+}
+
+.vc-track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1)
+}
+
+.vc-track.no-anim {
+  transition: none
+}
+
+.v-slide {
+  flex: 0 0 100%;
   position: relative;
-  min-height: 440px
+  aspect-ratio: 16 / 9;
+  background: var(--bark);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7)
 }
 
-.dine-img img {
+.v-slide video,
+.v-slide .v-poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover
+  object-fit: cover;
+  border: 0;
+  display: block
 }
 
-.dine-copy {
-  background: var(--bark);
-  padding: clamp(2rem, 5vw, 4rem);
+.v-slide .v-poster {
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: filter .4s
+}
+
+.v-slide .v-poster::after {
+  content: "▶";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  color: var(--bone);
+  background: rgba(14, 20, 16, .55);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  transition: transform .3s, background .3s
+}
+
+.v-slide .v-poster:hover::after {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: var(--ember);
+  color: var(--night)
+}
+
+.v-slide .v-poster.gone {
+  display: none
+}
+
+.vc-arrow {
+  position: absolute;
+  top: calc(50% - 26px);
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(14, 20, 16, .78);
+  backdrop-filter: blur(10px);
+  color: var(--bone);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  transition: background .3s, border-color .3s, transform .3s
+}
+
+.vc-arrow:hover {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--night)
+}
+
+.vc-prev {
+  left: 14px
+}
+
+.vc-next {
+  right: 14px
+}
+
+.video-now {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--bone);
+  text-align: center;
+  margin-top: 1.3rem;
+  transition: opacity .35s ease
+}
+
+.video-now.swapping {
+  opacity: 0
+}
+
+.vc-dots {
   display: flex;
-  flex-direction: column;
-  justify-content: center
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem
 }
 
-.dish {
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--line)
+.vc-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--line);
+  cursor: pointer;
+  transition: background .3s, transform .3s
 }
 
-.dish:last-child {
-  border: 0
+.vc-dots button.active {
+  background: var(--ember);
+  transform: scale(1.3)
 }
 
-.dish h4 {
-  font-family: "Fraunces";
-  font-size: 1.3rem;
-  margin-bottom: .2rem
-}
+@media(max-width:560px) {
+  .v-slide {
+    border-radius: 8px
+  }
 
-.dish p {
-  font-size: .9rem;
-  color: var(--bone-dim)
+  .vc-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem
+  }
+
+  .vc-prev {
+    left: 8px
+  }
+
+  .vc-next {
+    right: 8px
+  }
 }
 
 .events {
@@ -1169,7 +1297,7 @@ footer {
   header.open .navlinks {
     display: flex;
     position: absolute;
-    top: 74px;
+    top: 98px;
     left: 0;
     right: 0;
     flex-direction: column;
@@ -1211,7 +1339,6 @@ footer {
     columns: 2
   }
 
-  .dine-grid,
   .ev-grid,
   .love-grid {
     grid-template-columns: 1fr
