@@ -557,6 +557,32 @@
       </div>
     </div>
   </footer>
+
+  <!-- ================= CHAT WIDGET ================= -->
+  <div class="cw" id="cw" aria-live="polite">
+    <div class="cw-panel" id="cwPanel" role="dialog" aria-label="Camp Bughaw help">
+      <div class="cw-head">
+        <div class="cw-head-l">
+          <img src="images/logo2.png" alt="">
+          <div>
+            <div class="cw-name">Ask Bughaw</div>
+            <div class="cw-status">Usually replies instantly</div>
+          </div>
+        </div>
+        <button class="cw-close" id="cwClose" aria-label="Close chat">×</button>
+      </div>
+      <div class="cw-body" id="cwBody"></div>
+      <div class="cw-input">
+        <input id="cwText" type="text" placeholder="Ask about hours, booking, activities…" autocomplete="off">
+        <button id="cwSend" aria-label="Send">→</button>
+      </div>
+    </div>
+    <button class="cw-fab" id="cwFab" aria-label="Open chat">
+      <span class="cw-fab-open">💬</span>
+      <span class="cw-fab-close">×</span>
+    </button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 
