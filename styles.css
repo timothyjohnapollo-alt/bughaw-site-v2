@@ -130,7 +130,7 @@ header.scrolled {
   letter-spacing: .03em;
   text-transform: uppercase;
   line-height: 1;
-  color: var(--bone);
+  color: #84D1CD;
   transform: translateY(18px);
   margin-left: -0.15em;
 }
