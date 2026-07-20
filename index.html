@@ -251,59 +251,49 @@
       </div>
 
       <!-- ==================================================================
-           HOW TO ADD OR CHANGE VIDEOS
+           HOW TO ADD OR CHANGE VIDEOS  (Facebook / Instagram embeds)
 
-           Each video is ONE <div class="v-slide"> block below.
-           Copy a block, paste it, and edit these 2 things:
-             - data-src    = path to the video file (videos/yourfile.mp4)
-             - data-title  = the label shown under the player
-           The thumbnail is generated automatically from the first ~1 second
-           of the video itself — no poster image needed.
-           Order top-to-bottom = order in the carousel.
-           Delete a block to remove that video. Nothing else to touch.
+           Each video is ONE <figure class="embed-card"> block below.
+           These embed the REAL post from Facebook or Instagram, so the
+           creator's name, credit, and link-back come built in automatically —
+           you are not re-hosting their file, which keeps things above board.
+
+           TO ADD A FACEBOOK REEL/VIDEO:
+             1. Open the post on Facebook and copy the post URL from the
+                address bar (or ••• -> "Embed" -> copy the URL).
+             2. Paste that URL into  data-embed="..."  and set data-type="facebook".
+
+           TO ADD AN INSTAGRAM REEL/POST:
+             1. Copy the post/reel URL (e.g. https://www.instagram.com/reel/XXXX/).
+             2. Paste it into  data-embed="..."  and set data-type="instagram".
+
+           ALWAYS get the creator's OK first (a quick DM is enough), then fill in
+             data-credit  = who made it (shown under the post, e.g. "@juandelacruz")
+           Order top-to-bottom = order shown. Delete a block to remove it.
       =================================================================== -->
 
-      <div class="video-carousel reveal">
-        <div class="vc-viewport" id="vcViewport">
-          <div class="vc-track" id="vcTrack">
+      <div class="embed-grid reveal" id="embedGrid">
 
-            <!-- VIDEO 1 -->
-            <div class="v-slide"
-              data-src=""
-              data-title="Vlog 1"></div>
+        <!-- VIDEO 1 -->
+        <figure class="embed-card"
+          data-type="facebook"
+          data-embed="https://www.facebook.com/campbughaw/videos/REPLACE_WITH_POST_ID/"
+          data-credit="@campbughaw"></figure>
 
-            <!-- VIDEO 2 -->
-            <div class="v-slide"
-              data-src=""
-              data-title="Vlog 2"></div>
+        <!-- VIDEO 2 -->
+        <figure class="embed-card"
+          data-type="instagram"
+          data-embed="https://www.instagram.com/reel/REPLACE_WITH_REEL_ID/"
+          data-credit="@guest_handle"></figure>
 
-            <!-- VIDEO 3 -->
-            <div class="v-slide"
-              data-src=""
-              data-title="Vlog 3"></div>
+        <!-- VIDEO 3 -->
+        <figure class="embed-card"
+          data-type="facebook"
+          data-embed="https://www.facebook.com/REPLACE/videos/REPLACE/"
+          data-credit="Guest video, shared with permission"></figure>
 
-
-            <!-- VIDEO 4 -->
-            <div class="v-slide"
-              data-src=""
-              data-title="Vlog 4"></div>
-
-
-              
-            <!-- VIDEO 5 -->
-            <div class="v-slide"
-              data-src=""
-              data-title="Vlog 5"></div>
-
-          </div>
-        </div>
-
-        <button class="vc-arrow vc-prev" id="vcPrev" aria-label="Previous video">‹</button>
-        <button class="vc-arrow vc-next" id="vcNext" aria-label="Next video">›</button>
-
-        <div class="video-now" id="videoTitle">Life at Camp Bughaw</div>
-        <div class="vc-dots" id="vcDots"></div>
       </div>
+      <p class="embed-note">All videos are shared by our guests with their permission. Tag <a href="https://www.instagram.com/campbughaw/" target="_blank" rel="noopener">@campbughaw</a> in your reel and we might feature it here.</p>
     </div>
   </section>
   <section class="events pad" id="events">
@@ -562,7 +552,7 @@
     <div class="cw-panel" id="cwPanel" role="dialog" aria-label="Camp Bughaw help">
       <div class="cw-head">
         <div class="cw-head-l">
-          <img src="images/logo4.png" alt="">
+          <img src="images/logo2.png" alt="">
           <div>
             <div class="cw-name">Ask Bughaw</div>
             <div class="cw-status">Usually replies instantly</div>
@@ -582,6 +572,8 @@
     </button>
   </div>
 
+  <!-- Facebook SDK needs this empty root element on the page -->
+  <div id="fb-root"></div>
   <script src="script.js"></script>
 </body>
 
